@@ -52,3 +52,15 @@ add_to_bonjour_register('DALLAS', CommandDallas)
 # PCA9548A I2C multiplexer
 from .commandpca9548a import CommandPCA9548A
 add_to_bonjour_register('PCA9548A', CommandPCA9548A)
+
+# RTD amplifier board MAX31685 
+from .commandmax31865 import CommandMAX31865
+add_to_bonjour_register('MAX31865', CommandMAX31865)
+
+# RGB sensor TCS34725 
+from .commandtcs34725 import CommandTCS34725
+add_to_bonjour_register('TCS34725', CommandTCS34725)
+
+# Pressure sensors BME280
+from .commandbme280 import CommandBME280
+add_to_bonjour_register('BME280', CommandBME280)
