@@ -1,11 +1,15 @@
 import time
+import os
 import logging
 logging.basicConfig(level=logging.INFO)
 
 
 from commanduino import CommandManager
 
-cmdMng = CommandManager.from_configfile('./examples/commanddevices/commandaccelstepper/demo.json')
+script_dir = os.path.dirname(__file__)
+abs_path = os.path.join(script_dir, 'demo.json')
+
+cmdMng = CommandManager.from_configfile(abs_path)
 
 
 stepper = cmdMng.stepper
