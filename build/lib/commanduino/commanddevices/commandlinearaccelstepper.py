@@ -142,16 +142,6 @@ class CommandLinearAccelStepper(CommandDevice):
             value = -value
         return value
 
-    def revert_direction(self, direction):
-        """
-        Reverses the direction of the motor's rotation
-        :param direction: Boolean, True - clockwise, false = anti-clockwise
-        """
-        if direction:
-            self.reverted_direction = True
-        else:
-            self.reverted_direction = False
-
     @property
     def is_moving(self):
         """
