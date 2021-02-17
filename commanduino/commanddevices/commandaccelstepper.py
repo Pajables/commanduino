@@ -83,7 +83,7 @@ class CommandAccelStepper(CommandDevice):
         CommandDevice
 
     """
-    def __init__(self, speed=DEFAULT_SPEED, max_speed=DEFAULT_MAX_SPEED, acceleration=DEFAULT_ACCELERATION, enabled_acceleration=True, reverted_direction=False):
+    def __init__(self, speed=DEFAULT_SPEED, max_speed=DEFAULT_MAX_SPEED, acceleration=DEFAULT_ACCELERATION, enabled_acceleration=True, reverted_direction=False, steps_per_rev=3200):
         CommandDevice.__init__(self)
         self.register_all_requests()
         self.init_speed = speed
@@ -91,6 +91,7 @@ class CommandAccelStepper(CommandDevice):
         self.init_acceleration = acceleration
         self.enabled_acceleration = enabled_acceleration
         self.reverted_direction = reverted_direction
+        self.steps_per_rev = steps_per_rev
 
     def init(self):
         self.set_all_params()

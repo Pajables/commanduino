@@ -66,7 +66,7 @@ DEFAULT_MAX_SPEED = 5000
 DEFAULT_ACCELERATION = 2000
 
 # Default homing speed
-DEFAULT_HOMING_SPEED = 2000
+DEFAULT_HOMING_SPEED = 6400
 
 # Default sleep time
 DEFAULT_SLEEP_TIME = 0.1  # let's not make it too low to not make the communication bus too busy
@@ -94,7 +94,7 @@ class CommandLinearAccelStepper(CommandDevice):
     Base:
         CommandDevice
     """
-    def __init__(self, speed=DEFAULT_SPEED, max_speed=DEFAULT_MAX_SPEED, acceleration=DEFAULT_ACCELERATION, homing_speed=DEFAULT_HOMING_SPEED, enabled_acceleration=True, reverted_direction=False, reverted_switch=False):
+    def __init__(self, speed=DEFAULT_SPEED, max_speed=DEFAULT_MAX_SPEED, acceleration=DEFAULT_ACCELERATION, homing_speed=DEFAULT_HOMING_SPEED, enabled_acceleration=True, reverted_direction=False, reverted_switch=True, steps_per_rev=3200):
         CommandDevice.__init__(self)
         self.register_all_requests()
 
@@ -105,6 +105,7 @@ class CommandLinearAccelStepper(CommandDevice):
         self.enabled_acceleration = enabled_acceleration
         self.reverted_direction = reverted_direction
         self.reverted_switch = reverted_switch
+        self.steps_per_rev = 3200
 
     def init(self):
         self.set_all_params()
@@ -272,7 +273,7 @@ class CommandLinearAccelStepper(CommandDevice):
 
         """
         homing_speed = self.apply_reverted_direction(self.homing_speed)
-        self._set_speed(-homing_speed)
+        self._set_speed(homing_speed)
         self.send(COMMANDLINEARACCELSTEPPER_HOME)
         if wait:
             self.wait_until_idle()
